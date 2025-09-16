@@ -1,0 +1,136 @@
+/* =================================================================
+   MAIN CSS ENTRY POINT
+   Import all styles in the correct order
+   ================================================================= */
+
+/* 1. CSS Variables and Theme */
+@import './themes/variables.css';
+
+/* 2. CSS Reset and Base Styles */
+@import './global/reset.css';
+@import './global/base.css';
+
+/* 3. Utility Classes */
+@import './utils/utilities.css';
+
+/* 4. Component Styles */
+@import './components/App.css';
+@import './components/Login.css';
+
+/* =================================================================
+   GLOBAL OVERRIDES AND ADDITIONAL STYLES
+   ================================================================= */
+
+/* Ensure smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-300) var(--gray-100);
+}
+
+/* Selection styles */
+::selection {
+  background-color: var(--primary-100);
+  color: var(--primary-900);
+}
+
+::-moz-selection {
+  background-color: var(--primary-100);
+  color: var(--primary-900);
+}
+
+/* Focus visible styles for better accessibility */
+:focus-visible {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* High contrast mode improvements */
+@media (prefers-contrast: high) {
+  :root {
+    --gray-300: #000000;
+    --primary-500: #0000ff;
+    --red-500: #ff0000;
+    --green-500: #008000;
+  }
+  
+  .form-input,
+  .social-button {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a, a:visited {
+    text-decoration: underline;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+  
+  .login-brand-section {
+    display: none !important;
+  }
+  
+  .login-container {
+    flex-direction: column !important;
+  }
+  
+  .login-form-section {
+    order: 1 !important;
+    min-height: auto !important;
+  }
+}
